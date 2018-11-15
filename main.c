@@ -3,57 +3,57 @@
 
 /* run this program using the console pauser or add your own getch, system("pause") or input loop */
 
-int addfunc(int a, int b)
+void print_image(int image[5][5])
 {
-	return a+b;
+	int i, j;
+	int *ptr=&image[0][0];
+	
+	for(i=0;i<5;i++)
+	{
+		for(j=0;j<5;j++)
+		{
+			printf("%d ", *ptr);
+			ptr=ptr+1;
+		}
+		printf("\n");
+	}
+	printf("\n");
 }
 
-int subfunc(int a, int b)
+
+
+void brighten_image(int image[5][5])
 {
-	return a-b;
+	int i, j;
+	int *ptr=&image[0][0];
+	
+	for(i=0;i<5;i++)
+	{
+		for (j=0;j<5;j++)
+		{
+			*ptr=*ptr+10;
+			ptr=ptr+1;
+		}
+	}
 }
 
-int mulfunc(int a, int b)
-{
-	return a*b;
-}
-
-int divfunc(int a, int b)
-{
-	return a/b;
-}
 
 
 int main(int argc, char *argv[]) {
-	int num1, num2; 
-	char op;
-	int (*calcfunc)(int, int);
+	int image[5][5]={
+		{10, 20, 30, 40, 50},
+		{10, 20, 30, 40, 50},
+		{10, 20, 30, 40, 50},
+		{10, 20, 30, 40, 50},
+		{10, 20, 30, 40, 50}
+	};
 	
-	printf("input calculation :");
-	scanf("%d%c%d", &num1, &op, &num2);
-	
-	switch(op)
-	{
-		case'+':
-			calcfunc=addfunc;
-			break;
-		
-		case'-':
-			calcfunc=subfunc;
-			break;
-			
-		case'*':
-			calcfunc=mulfunc;
-			break;
-			
-		case'/':
-			calcfunc=divfunc;
-			break;
-	}
+	print_image(image);
+	brighten_image(image);
+	print_image(image);
 	
 	
-	printf("result: %i\n", calcfunc(num1,num2)); 
-	
-
 	return 0;
 }
+
+
